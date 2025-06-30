@@ -19,6 +19,11 @@ app.get('/', (req, res) => {
 });
 
 // Port
-// transfer port in env
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => { console.log(`Running on port ${PORT}`) });
+
+// Basic error
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+});
