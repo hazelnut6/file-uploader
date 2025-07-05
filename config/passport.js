@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 module.exports = function(passport) {
     // LocalStrategy
     passport.use(
-        new LocalStrategy({ usernameField: 'username' }, async(username, password, done) => {
+        new LocalStrategy({ usernameField: 'username', passReqToCallback: true  }, async(req, username, password, done) => {
             try {
                 // find user
                 const user = await prisma.user.findUnique({
@@ -17,7 +17,8 @@ module.exports = function(passport) {
 
                 // Does user exists?
                 if(!user) {
-                    return done(null, false, { message: 'Incorrect username.' });
+                    req.flash('error', 'Incorrect username.');
+                    return done(null, false);
                 }
 
                 // Compare password to hashed password
@@ -25,7 +26,8 @@ module.exports = function(passport) {
 
                 // Check if password match
                 if(!match) {
-                    return done(null, false, { message: 'Incorrect password.' });
+                    req.flash('error', 'Incorrect password.');
+                    return done(null, false);
                 }
 
                 // no error, return user
