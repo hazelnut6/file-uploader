@@ -4,10 +4,6 @@ const prisma = new PrismaClient();
 const passport = require('passport');
 const { validationResult } = require('express-validator');
 
-// home
-exports.getHome = (req, res) => {
-    res.render('index', { title: 'File Uploader' });
-}
 
 // sign up
 exports.getSignUp = (req, res) => {
