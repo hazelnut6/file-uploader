@@ -1,0 +1,18 @@
+<nav>
+    <div class="siteName">
+        <h1>File Uploader</h1>
+    </div>
+    <ul class="navLinks">
+        <% if(user) { %> 
+            <a href="/"><li>Home</li></a>
+            <li>
+                <form action="/auth/log-out" method="post" style="display:inline;">
+                    <button type="submit">Log Out</button>
+                </form>
+            </li>
+        <% } else { %>
+            <a href="/"><li>Home</li></a>
+            <a href="/auth/sign-up">Sign Up</a>
+        <% } %>
+    </ul>
+</nav>

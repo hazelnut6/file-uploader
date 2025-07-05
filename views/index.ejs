@@ -6,6 +6,71 @@
     <title><%= title %></title>
 </head>
 <body>
-    <h1>Landing page</h1>
+
+    <%- include('partials/nav') %>
+
+    <main>
+
+        <!-- flash messages -->
+        <% if(error && error.length > 0) { %> 
+            <div class="errDiv" style="color: red;">
+                <%= error %>
+            </div>
+        <% } %>
+
+        <% if(success && success.length > 0) { %> 
+            <div class="errDiv" style="color: green;">
+                <%= success %>
+            </div>
+        <% } %>
+
+        <% if(info && info.length > 0) { %> 
+            <div class="errDiv">
+                <%= info %>
+            </div>
+        <% } %>
+
+        
+        <% if(user) { %>
+            <section class="homeSect">
+                <h2>Files & Folders</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolorum, modi iste odio praesentium cumque dolorem quos.
+                </p>
+            </section>
+        <% } else { %>
+            <section class="homeSect">
+                <div class="leftDiv">
+                    <h1>Landing page</h1>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex doloremque, facilis odit sed et explicabo voluptatibus nobis quod.
+                    </p>
+                    <a href="/auth/sign-up">
+                        <button>Sign Up</button>
+                    </a>
+                </div>
+                <div class="rightDiv">
+                    <form action="/auth/log-in" method="post" class="authForm">
+                        <div>
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" placeholder="Type username" required>
+                        </div>
+                        <div>
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" placeholder="Type password" required>
+                        </div>
+                        <button type="submit">Log In</button>
+                        <div class="otherLinks">
+                            <p>
+                                Doesn't have an account? <a href="/auth/sign-up">Sign up</a>.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        <% } %>
+    </main>
+    
+    <%- include('partials/footer') %>
 </body>
 </html>
