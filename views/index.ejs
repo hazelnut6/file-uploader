@@ -37,6 +37,12 @@
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dolorum, modi iste odio praesentium cumque dolorem quos.
                 </p>
+
+                <h3>Upload a new file</h3>
+                <form action="/upload" method="post" enctype="multipart/form-data" class="uploadForm">
+                    <input type="file" name="myFile">
+                    <button type="submit">Upload</button>
+                </form>
             </section>
         <% } else { %>
             <section class="homeSect">
@@ -53,7 +59,7 @@
                     <form action="/auth/log-in" method="post" class="authForm">
                         <div>
                             <label for="username">Username</label>
-                            <input type="text" name="username" id="username" placeholder="Type username" required>
+                            <input type="text" name="username" id="username" placeholder="Type username" required value="<%= typeof username !== 'undefined' ? username : '' %>">
                         </div>
                         <div>
                             <label for="password">Password</label>
@@ -62,7 +68,7 @@
                         <button type="submit">Log In</button>
                         <div class="otherLinks">
                             <p>
-                                Doesn't have an account? <a href="/auth/sign-up">Sign up</a>.
+                                Don't have an account? <a href="/auth/sign-up">Sign up</a>.
                             </p>
                         </div>
                     </form>
